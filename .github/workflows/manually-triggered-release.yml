@@ -31,6 +31,6 @@ jobs:
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: echo "$GITHUB_CONTEXT"
-    - name: Print parameters
+    - name: Run fastlane release script
       run: |
-        bundle exec fastlane release version:${{ github.event.inputs.version }} github_token:${{ secrets.GITHUB_TOKEN }}
+        bundle exec fastlane release version:${{ github.event.inputs.version }} github_token:${{ secrets.RELEASE_TOKEN }}
