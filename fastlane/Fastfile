@@ -4,6 +4,10 @@ platform :ios do
   desc "Description of what the lane does"
   lane :release do |options|
     version = options[:version]
+    is_draft = options[:is_draft] || false
+    dry_run = options[:dry_run] || false
+    github_token = options[:github_token] || ENV["GITHUB_TOKEN"]
+    release_branch = options[:release_branch] || "main"
 
     release_notes = get_release_notes()
 
@@ -15,11 +19,54 @@ platform :ios do
       version: version,
       release_notes: release_notes
     )
+    create_release_on_github(
+      version: version,
+      release_notes: release_notes,
+      github_token: github_token,
+      release_branch: release_branch,
+      dry_run: dry_run,
+      is_draft: is_draft
+    )
   end
 
 ##############################################################################
 # RELEASE
 ##############################################################################
+
+  desc "Create release on GitHub"
+  private_lane :create_release_on_github do |options|
+    version = options[:version]
+    version_tag = "v#{version}"
+    release_notes = options[:release_notes]
+    github_token = options[:github_token]
+    release_branch = options[:release_branch]
+    dry_run = options[:dry_run] 
+    is_draft = options[:is_draft]
+    release_notes_filename = ENV["RELEASE_NOTES_TMP_FILENAME"]
+    release_notes_path = "../#{release_notes_filename}"
+
+    if dry_run == true
+      UI.important("Running in \"dry run\" mode. Release won't be published.")
+    else
+      if github_token.nil?
+        UI.user_error!("GitHub Token is required to make release.")
+      end
+
+      File.write("#{release_notes_path}", release_notes)
+
+      set_github_release(
+      repository_name: "box/box-ios-sdk",
+      api_token: github_token,
+      name: "#{version_tag}",
+      tag_name: "#{version_tag}",
+      description: (File.read("#{release_notes_path}") rescue "No changelog provided"),
+      commitish: "#{release_branch}",
+      is_draft: is_draft
+    )
+
+    sh("rm #{release_notes_path}")
+    end
+  end
 
   desc "Commit version update"
   private_lane :commit_release_changes_with_tag do |options|
