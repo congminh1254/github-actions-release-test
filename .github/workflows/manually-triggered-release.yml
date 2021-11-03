@@ -5,6 +5,14 @@ on:
       version:
         description: 'Please provide the version you want to release'
         required: true
+      git_user_name:
+        description: 'Please provide git user.name'
+        required: false
+        default: 'Artur Jankowski'
+      git_user_email:
+        description: 'Please provide a git user.email'
+        required: false
+        default: 'ajankowski@box.com'
   pull_request:
     branches:
       - 'main'
@@ -20,6 +28,12 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         fetch-depth: 0
         submodules: true
+    - name: Setup git user
+      run: |
+          git config --global user.name "${{ github.event.inputs.git_user_name }}"
+          git config --global user.email "${{ github.event.inputs.git_user_email }}"
+# git config --global user.name "$(git --no-pager log --format=format:'%an' -n 1)"
+# git config --global user.email "$(git -#-no-pager log --format=format:'%ae' -n 1)"
     - name: Print parameters
       run: |
         echo "Running release ${{ github.event_name }}!"
@@ -34,4 +48,4 @@ jobs:
       run: echo "$GITHUB_CONTEXT"
     - name: Run fastlane release script
       run: |
-        bundle exec fastlane release version:${{ github.event.inputs.version }} github_token:${{ secrets.RELEASE_TOKEN }}
+        bundle exec fastlane ios release version:${{ github.event.inputs.version }} github_token:${{ secrets.RELEASE_TOKEN }}
