@@ -55,7 +55,7 @@ platform :ios do
       File.write("#{release_notes_path}", release_notes)
 
       set_github_release(
-      repository_name: "box/box-ios-sdk",
+      repository_name: "arjankowski/github-actions-release-test",
       api_token: github_token,
       name: "#{version_tag}",
       tag_name: "#{version_tag}",

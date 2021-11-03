@@ -33,4 +33,4 @@ jobs:
       run: echo "$GITHUB_CONTEXT"
     - name: Print parameters
       run: |
-        bundle exec fastlane release version:${{ github.event.inputs.version }}
+        bundle exec fastlane release version:${{ github.event.inputs.version }} github_token:${{ secrets.GITHUB_TOKEN }}
