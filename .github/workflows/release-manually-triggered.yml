@@ -25,9 +25,9 @@ jobs:
         echo "Hello ${{ github.event.inputs.name }}!"
         echo "- in ${{ github.event.inputs.home }}!"
     - name: Setup - Ruby and bundler dependencies
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
+      uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true
     - name: Dump GitHub context
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
