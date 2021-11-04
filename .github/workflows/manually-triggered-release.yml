@@ -19,7 +19,7 @@ on:
 
 jobs:
   release_job:
-    environment: release
+    environment:  release_approval
     runs-on: macos-11
     steps:
     - name: Checkout main branch
@@ -35,11 +35,11 @@ jobs:
           git config --global user.email "${{ github.event.inputs.git_user_email }}"
 # git config --global user.name "$(git --no-pager log --format=format:'%an' -n 1)"
 # git config --global user.email "$(git -#-no-pager log --format=format:'%ae' -n 1)"
-    - name: Env variable
-      env:
-        AUTHORIZED_USERS: ${{ secrets.AUTHORIZED_USERS }}
-      run: |
-        echo "${AUTHORIZED_USERS}"
+    # - name: Env variable
+    #   env:
+    #     AUTHORIZED_USERS: ${{ secrets.AUTHORIZED_USERS }}
+    #   run: |
+    #     echo "${AUTHORIZED_USERS}"
     - name: Print parameters
       run: |
         echo "Running release ${{ github.event_name }}!"
