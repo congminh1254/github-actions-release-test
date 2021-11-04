@@ -4,6 +4,7 @@ on:
     inputs:
       version:
         description: 'Please provide the version you want to release'
+        default: '1.0.0'
         required: true
       git_user_name:
         description: 'Please provide git user.name'
@@ -15,7 +16,7 @@ on:
         default: 'ajankowski@box.com'
   pull_request:
     branches:
-      - 'main'
+      - 'aj/release_test'
 
 jobs:
   release_job:
@@ -54,4 +55,4 @@ jobs:
       run: echo "$GITHUB_CONTEXT"
     - name: Run fastlane release script
       run: |
-        bundle exec fastlane ios release version:${{ github.event.inputs.version }} github_token:${{ secrets.RELEASE_TOKEN }}
+        bundle exec fastlane ios release version:${{ github.event.inputs.version }} github_token:${{ secrets.RELEASE_TOKEN }} is_draft:true
