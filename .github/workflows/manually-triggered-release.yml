@@ -11,16 +11,19 @@ on:
       - 'aj/release_test'
 
 jobs:
-  release_job:
-    environment:  release_approval
+  Release_library_release_test:
     runs-on: macos-11
     steps:
-    - name: Checkout main branch
+    - name: Authorize user
+      env:
+        AUTHORIZED_USERS: "${{ secrets.AUTHORIZED_USERS }}"
+      run: |
+         if [[ " ${AUTHORIZED_USERS} " =~ " ${{ github.actor }} " ]]; then echo "::notice::User authorized!"; else echo "::error::Not authorized user to create release"; exit 1; fi
+    - name: Checkout branch
       uses: actions/checkout@v2
       with:
-        ref: ${{ github.ref_name }}
+        ref: main
         token: ${{ secrets.GITHUB_TOKEN }}
-        fetch-depth: 0
         submodules: true
     - name: Setup git user
       run: |
@@ -40,4 +43,4 @@ jobs:
       run: echo "$GITHUB_CONTEXT"
     - name: Run fastlane release script
       run: |
-        bundle exec fastlane ios release version:${{ github.event.inputs.version }} github_token:${{ secrets.RELEASE_TOKEN }} release_branch: ${{ github.ref_name }} is_draft:true
+        bundle exec fastlane ios release version:${{ github.event.inputs.version }} github_token:${{ secrets.RELEASE_TOKEN }}
