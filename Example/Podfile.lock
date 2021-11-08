@@ -1,0 +1,16 @@
+PODS:
+  - PublishAJLibrary (0.1.0)
+
+DEPENDENCIES:
+  - PublishAJLibrary (from `../`)
+
+EXTERNAL SOURCES:
+  PublishAJLibrary:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  PublishAJLibrary: e2d98fb14855877527b766424006f29972a21c18
+
+PODFILE CHECKSUM: c63bd7dcec537593422571bdb636f2ee9c3fd657
+
+COCOAPODS: 1.6.0.beta.2

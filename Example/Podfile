@@ -1,0 +1,6 @@
+use_frameworks!
+target 'PublishAJLibrary_Tests' do
+  pod 'PublishAJLibrary', :path => '../'
+  
+  
+end
