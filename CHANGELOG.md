@@ -5,6 +5,14 @@ Changelog
 
 __Breaking Changes:__
 
+__New Features and Enhancements:__
+
+__Bug Fixes:__
+
+## v1.0.0 [2021-11-08]
+
+__Breaking Changes:__
+
 - BC 1
 - BC 2
 
