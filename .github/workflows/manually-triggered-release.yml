@@ -19,6 +19,12 @@ jobs:
         AUTHORIZED_USERS: "${{ secrets.AUTHORIZED_USERS }}"
       run: |
          if [[ " ${AUTHORIZED_USERS} " =~ " ${{ github.actor }} " ]]; then echo "::notice::User authorized!"; else echo "::error::Not authorized user to create release"; exit 1; fi
+    - name: Check if user has admin access
+      uses: lannonbr/repo-permission-check-action@2.0.0
+      with:
+        permission: admin
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Checkout branch
       uses: actions/checkout@v2
       with:
