@@ -9,6 +9,8 @@ __New Features and Enhancements:__
 
 __Bug Fixes:__
 
+## v1.2.0 [2021-11-08]
+
 ## v1.0.0 [2021-11-08]
 
 __Breaking Changes:__
