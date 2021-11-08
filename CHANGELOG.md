@@ -1,29 +1,19 @@
-Changelog
-=========
+# Changelog
 
-## Next Release
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-__Breaking Changes:__
+## [1.0.0](https://github.com/box/box-ios-sdk/compare/v4.4.0...v5.0.0) (2021-10-28)
 
-__New Features and Enhancements:__
+### ⚠ BREAKING CHANGES
 
-__Bug Fixes:__
+- Update PagingIterator to return pages and simplify logic ([#737](https://github.com/box/box-ios-sdk/pull/737))
+- Remove insensitive language field `collaborationWhiteList` in BoxClient. Use `collaborationAllowList` instead. ([#790](https://github.com/box/box-ios-sdk/pull/790))
 
-## v1.0.0 [2021-11-08]
+### New Features and Enhancements
 
-__Breaking Changes:__
+- Replace insensitive event types ([#785](https://github.com/box/box-ios-sdk/pull/785))
+- Add SignAPI support ([#792](https://github.com/box/box-ios-sdk/pull/792))
 
-- BC 1
-- BC 2
+## [0.1.0](https://github.com/box/box-ios-sdk/compare/v4.3.0...v4.4.0) (2021-04-20)
 
-__New Features and Enhancements:__
-
-- NFE 1
-- NFE 2
-
-__Bug Fixes:__
-
-- BF 1
-- BF 2
-
-## v0.0.0
+### New Features and Enhancements

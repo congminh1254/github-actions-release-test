@@ -47,6 +47,9 @@ jobs:
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: echo "$GITHUB_CONTEXT"
+    - name: Run fastlane release script
+      run: |
+        bundle exec fastlane ios release version:${{ github.event.inputs.version }} github_token:${{ secrets.RELEASE_TOKEN }}
     - name: Deploy to Cocoapods
       run: |
         set -eo pipefail
