@@ -11,6 +11,7 @@ platform :ios do
 
     release_notes = get_release_notes()
 
+    update_version(version: version)
     update_changelog(
       version: version, 
       release_notes: release_notes
@@ -83,6 +84,29 @@ platform :ios do
       sh("git push --atomic origin HEAD #{version_tag}")
       sh("rm #{release_notes_filename}")
     end
+  end
+
+
+  ##############################################################################
+  # VERSION UPDATE
+  ##############################################################################
+
+  desc "Validate version"
+  private_lane :is_version_valid do |options|
+    version = options[:version]
+    !!(version =~ /^\d+\.\d+\.\d+$/)
+  end
+
+  desc "Update SDK version"
+  private_lane :update_version do |options|
+    version = options[:version]
+
+
+    # Update BoxSDK.podspec
+    podspec_path = ENV["PODSPEC_PATH"]
+    sh("sed -i.bak -E 's|(.*s.version.* = ).*|\\1\"#{version}\"|g' #{podspec_path}")
+    sh("rm #{podspec_path}.bak")
+  
   end
 
 ##############################################################################
