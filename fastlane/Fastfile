@@ -1,6 +1,15 @@
 default_platform(:ios)
 
 platform :ios do
+
+  desc "Create PR with release changes"
+  lane :update_ do |options|
+
+    version = get_next_release_version()
+    update_changelog_empty(version: version)
+  end
+
+
   desc "Create PR with release changes"
   lane :make_pull_request do |options|
     version = options[:version]
@@ -166,77 +175,15 @@ private_lane :get_release_notes do |options|
   release_notes
 end
 
-  # desc "Return release notes based on actual CHANGELOG.md file"
-  # private_lane :get_release_notes do |options|
-  #   changelog_path = ENV["CHANGELOG_PATH"]
-  #   release_notes_to_process = sh("sed -nE '/^## Next/,/^## v/p'  #{changelog_path} | sed -e '$ d' | sed 1,2d")
-
-  #   processing_section = ""
-  #   final_release_notes = ""
-  #   release_notes_to_process.each_line do |line|
-  #     if ["__Breaking Changes:__\n", "__New Features and Enhancements:__\n", "__Bug Fixes:__\n"].include? line
-  #       if processing_section.lines.count > 2
-  #         final_release_notes += processing_section 
-  #       end
-
-  #       processing_section = ""
-  #     end
-  #     processing_section += line
-  #   end
-
-  #   if processing_section.lines.count > 2
-  #     final_release_notes += processing_section 
-  #   end
-
-  #   final_release_notes
-  # end
-
   desc "Update CHANGELOG.md file based on conventional commits"
   private_lane :update_changelog do |options|
     version = options[:version]
+    update_changelog_script_path = ENV["UPDATE_CHANGELOG_SCRIPT_PATH"]
 
     Dir.chdir("..") do
       sh("standard-version --skip.tag --skip.commit --release-as #{version}")
+      sh("#{update_changelog_script_path}")
     end
   end
-  
-  # desc "Update changelog"
-  # private_lane :update_changelog do |options|
-  #   version = options[:version]
-  #   release_notes = options[:release_notes]
-  #   changelog_path = ENV["CHANGELOG_PATH"]
-  #   date = sh("date '+%Y-%m-%d' | tr -d '\n'")
 
-  #   # Remove empty sections from "Next Release"
-  #   sh("sed -i '.bak' -E '/^## Next/,/^## v/{//!d;}' #{changelog_path}")
-  #   File.open(changelog_path, "r+") do |file|
-  #     content = ""``
-  #     line_number = 1
-  #     file.each_line do |file_line|
-  #     if line_number == 5
-  #       content += "\n"
-  #       release_notes.lines.each { |notes_line|
-  #         content += notes_line
-  #       }
-  #     end
-
-  #     content += file_line
-  #     line_number += 1
-  #     end
-
-  #     file.rewind
-  #     file.write(content)
-  #   end
-
-  #   # Change Next Release to specific version
-  #   sh("sed -i.bak -E 's/## Next Release.*/## v#{version} \[#{date}\]/g' #{changelog_path}")
-  #   sh("rm #{changelog_path}.bak")
-
-  #   # Add next release template
-  #   header_template = ENV["CHANGELOG_HEADER_TEMPTLATE"].split("\n")
-  #   header_template.reverse.each { |line| 
-  #     sh("sed -i '.bak' '4s/^/#{line}\\n\\n/' #{changelog_path}")
-  #   }
-  #   sh("rm #{changelog_path}.bak")
-  #   end
 end
