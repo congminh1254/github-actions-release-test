@@ -16,11 +16,6 @@ or alternatively using `brew install fastlane`
 
 # Available Actions
 ## iOS
-### ios update_
-```
-fastlane ios update_
-```
-Create PR with release changes
 ### ios make_pull_request
 ```
 fastlane ios make_pull_request
@@ -31,11 +26,11 @@ Create PR with release changes
 fastlane ios make_release
 ```
 Create new release on github
-### ios make_publish_pods
+### ios make_publish_pod
 ```
-fastlane ios make_publish_pods
+fastlane ios make_publish_pod
 ```
-Create new release on github
+Publish to version of cocoapods
 
 ----
 
