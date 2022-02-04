@@ -23,3 +23,5 @@ jobs:
       - name: Logging
         run: |
           echo "${{toJSON(github.event)}}"
+      - name: PR Lint Validation
+        uses: arjankowski/pull_request_lint@v1.1
