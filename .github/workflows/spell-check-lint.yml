@@ -9,6 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Verify pull request title
-        uses: arjankowski/pull_request_lint@v1.0.0
+        uses: box/box-sdk-spellchecker@v1.0.0
         with:
           spelling-list: 'biedronka'
