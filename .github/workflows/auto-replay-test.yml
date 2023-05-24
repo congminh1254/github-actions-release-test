@@ -1,0 +1,14 @@
+name: auto-replay-test
+on:
+  issues:
+    types: [opened]
+  issue_comment:
+    types: [created]
+jobs:
+  auto-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run auto replay action
+        uses: arjankowski/auto-reply-test@main
+        with:
+          openai-key: ${{ secrets.OPENAI_KEY }}
