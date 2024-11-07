@@ -15,6 +15,7 @@ jobs:
         with:
           ref: refs/heads/main
           repository: arjankowski/box-sdk-spellchecker
+          token: ${{ secrets.MY_TOKEN }}
           path: spellchecker
       - name: Execute spellchecker
         uses: ./spellchecker
