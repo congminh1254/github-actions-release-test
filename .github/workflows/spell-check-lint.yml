@@ -19,3 +19,5 @@ jobs:
           path: spellchecker
       - name: Execute spellchecker
         uses: ./spellchecker
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
