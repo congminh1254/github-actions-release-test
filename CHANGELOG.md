@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* Add missing fields to Sign Template Signer and fix AI schema (box/box-openapi[#451](https://github.com/box/box-typescript-sdk-gen/issues/451)) ([#317](https://github.com/box/box-typescript-sdk-gen/issues/317)) ([340fbd8](https://github.com/box/box-typescript-sdk-gen/commit/340fbd84f6fa408155c6a2a4b9b7b03b88f76f24))
+* Add missinsfgg fields to Sign Template Signer and fix AI schema (box/box-openapi[#451](https://github.com/box/box-typescript-sdk-gen/issues/451)) ([#317](https://github.com/box/box-typescript-sdk-gen/issues/317)) ([340fbd8](https://github.com/box/box-typescript-sdk-gen/commit/340fbd84f6fa408155c6a2a4b9b7b03b88f76f24))
 * Fix `IntegrationMapping` schemas (box/box-codegen[#551](https://github.com/box/box-typescript-sdk-gen/issues/551)) ([#315](https://github.com/box/box-typescript-sdk-gen/issues/315)) ([a863b1e](https://github.com/box/box-typescript-sdk-gen/commit/a863b1eb8fcfccd78714e3f52ce96d89ef69ca72))
 
 
