@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [3.1.1](https://github.com/arjankowski/github-actions-release-test/compare/v3.1.0...v3.1.1) (2022-01-15)
+## [3.1.1](https://github.com/arjankowski/github-actions-release-test/compare/v3.1.0...v3.1.1) (2022-01-15)
 
 
 ### Bug Fixes
@@ -32,7 +32,7 @@ All notable changes to this project will be documented in this file. See [standa
 * adjust fastlane 6 ([#26](https://github.com/arjankowski/github-actions-release-test/issues/26)) ([edfc469](https://github.com/arjankowski/github-actions-release-test/commit/edfc4698f99da65e3c90a2718e3150c0cfc1beab))
 * adjust fastlane 7 ([#27](https://github.com/arjankowski/github-actions-release-test/issues/27)) ([f360ca1](https://github.com/arjankowski/github-actions-release-test/commit/f360ca1f189db806053ad6abc5f903fec31db21a))
 
-## [3.0.0](https://github.com/arjankowski/github-actions-release-test/compare/v2.1.0...v3.0.0) (2022-01-04)
+### [3.0.0](https://github.com/arjankowski/github-actions-release-test/compare/v2.1.0...v3.0.0) (2022-01-04)
 
 
 ### ⚠ BREAKING CHANGES
